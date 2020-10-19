@@ -16,6 +16,8 @@ This repository has a web server ( Apache on Debian ), database server (MySQL) ,
 docker-compose up
 ```
 
+Now you should be able to enter your app in `http://localhost:8080` or SSL `https://localhost:4343` and PhpMyAdmin `http://localhost:8081` 
+
 4. If you work on *nix system, it might appear a write permissions error. To solve this you have to re-map [¹](#explanation) the user of the host machine with the user `www-data` inside the virtual machine, and restart the services ( `Ctrl+c`   and    `docker-compose up` again )
 
 ```sh
