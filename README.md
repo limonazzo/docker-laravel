@@ -57,7 +57,7 @@ DB_PASSWORD=laravel_password
 
 ## Licence
 
-This work is under [MIT](LICENCE) licence.
+This work is under [MIT](LICENSE) license.
 
 
 <a name="explanation"></a>
