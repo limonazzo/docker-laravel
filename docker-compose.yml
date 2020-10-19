@@ -1,0 +1,51 @@
+version: "3.7"
+
+networks:
+  laravel:
+
+volumes:
+  db-data:
+
+services:
+  database:
+    networks:
+      - laravel
+    image: mysql:5.7.31
+    volumes:
+      - "db-data:/var/lib/mysql"
+    ports: 
+      - "6544:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE : laravel_db
+      MYSQL_USER: laravel_user
+      MYSQL_PASSWORD: laravel_password
+
+  phpmyadmin:
+    networks:
+      - laravel
+    image: phpmyadmin:latest
+    depends_on: 
+      - database
+    links:
+      - "database:db"
+    ports:
+      - "8081:80"
+
+  webserver:
+    networks:
+      - laravel
+    build:
+      context: ./php7.4
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+      - "4343:443"
+    volumes: 
+      - ".:/var/www/html"
+    depends_on: 
+      - database
+  
+  
+
+  
