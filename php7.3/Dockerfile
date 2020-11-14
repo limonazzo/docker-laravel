@@ -1,5 +1,5 @@
-## docker build -t php:7.4 .
-FROM php:7.4.12-apache-buster
+## docker build -t php:7.3 .
+FROM php:7.3.24-apache-stretch
 
 RUN apt-get update
 
@@ -33,62 +33,15 @@ RUN docker-php-ext-install bz2
 RUN docker-php-ext-install curl
 RUN docker-php-ext-install calendar
 RUN docker-php-ext-configure gd \
-    --with-webp \
-    --with-freetype \
-    --with-xpm \
-    --with-jpeg
+    --with-freetype-dir=/usr/include/ \
+    --with-jpeg-dir=/usr/include/ \
+    --with-xpm-dir=/usr/include/ \
+    --with-webp-dir=/usr/include/
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install soap
 RUN docker-php-ext-install sockets
 RUN docker-php-ext-install xsl
 RUN docker-php-ext-install zip
-
-## PHP Extensions 
-# RUN docker-php-ext-install dba
-# RUN docker-php-ext-install enchant
-# RUN docker-php-ext-install exif
-# RUN docker-php-ext-install ffi
-# RUN docker-php-ext-install filter
-# RUN docker-php-ext-install ftp
-# RUN docker-php-ext-install gettext
-# RUN docker-php-ext-install gmp
-# RUN docker-php-ext-install hash
-# RUN docker-php-ext-install iconv
-# RUN docker-php-ext-install imap
-# RUN docker-php-ext-install intl
-# RUN docker-php-ext-install ldap
-# RUN docker-php-ext-install oci8
-# RUN docker-php-ext-install odbc
-# RUN docker-php-ext-install opcache
-# RUN docker-php-ext-install pcntl
-# RUN docker-php-ext-install pdo
-# RUN docker-php-ext-install pdo_dblib
-# RUN docker-php-ext-install pdo_firebird
-# RUN docker-php-ext-install pdo_mysql
-# RUN docker-php-ext-install pdo_oci
-# RUN docker-php-ext-install pdo_odbc
-# RUN docker-php-ext-install pdo_pgsql
-# RUN docker-php-ext-install pdo_sqlite
-# RUN docker-php-ext-install pgsql
-# RUN docker-php-ext-install phar
-# RUN docker-php-ext-install posix
-# RUN docker-php-ext-install pspell
-# RUN docker-php-ext-install readline
-# RUN docker-php-ext-install reflection
-# RUN docker-php-ext-install session
-# RUN docker-php-ext-install shmop
-# RUN docker-php-ext-install simplexml
-# RUN docker-php-ext-install snmp
-# RUN docker-php-ext-install sodium
-# RUN docker-php-ext-install spl
-# RUN docker-php-ext-install sysvmsg
-# RUN docker-php-ext-install sysvsem
-# RUN docker-php-ext-install sysvshm
-# RUN docker-php-ext-install tidy
-# RUN docker-php-ext-install xmlreader
-# RUN docker-php-ext-install xmlrpc
-# RUN docker-php-ext-install xmlwriter
-# RUN docker-php-ext-install zend_test
 
 ## Custom Configuration  (php.ini , apache, xdebug)
 COPY dockerfiles/php.ini /usr/local/etc/php/
@@ -127,7 +80,7 @@ RUN mv composer.phar /usr/bin/composer
 
 # ##### FrontEndTools:
 
-## Node 
+# # Node 
 # RUN curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 # RUN apt-get install -y nodejs
 # RUN apt-get install gcc g++ make
@@ -155,7 +108,7 @@ RUN mv composer.phar /usr/bin/composer
 # RUN npm install webpack -g
 
 # ## angular
-# # RUN npm install @angular/cli -g
+# RUN npm install @angular/cli -g
 
 # ## brunch
 # RUN npm install -g brunch
