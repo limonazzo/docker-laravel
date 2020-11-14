@@ -2,11 +2,11 @@ dist: xenial
 
 jobs:
   include:
-    - stage: build docker images
+    - stage: php 7.3
       script:
       - docker build -t limonazzo/php:7.3 php7.3/
-      - docker build -t limonazzo/php:7.4 php7.4/
-    - stage: test
-      script: 
       - docker run limonazzo/php:7.3 /bin/bash -c "echo 'php 7.3 build successfully'"
+    - stage: php 7.4
+      script: 
+      - docker build -t limonazzo/php:7.4 php7.4/
       - docker run limonazzo/php:7.4 /bin/bash -c "echo 'php 7.4 build successfully'"
