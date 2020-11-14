@@ -1,13 +1,12 @@
-sudo: required
+dist: xenial
 
-language: php
-
-services:
-  - docker 
-
-after_success:
-  - docker --version
-  - docker build -t limonazzo/php:7.3 php7.3/
-  - docker run limonazzo/php:7.3 /bin/bash -c "echo 'php 7.3 build successfully'"
-  - docker build -t limonazzo/php:7.4 php7.4/
-  - docker run limonazzo/php:7.4 /bin/bash -c "echo 'php 7.4 build successfully'"
+jobs:
+  include:
+    - stage: build docker images
+      script:
+      - docker build -t limonazzo/php:7.3 php7.3/
+      - docker build -t limonazzo/php:7.4 php7.4/
+    - stage: test
+      script: 
+      - docker run limonazzo/php:7.3 /bin/bash -c "echo 'php 7.3 build successfully'"
+      - docker run limonazzo/php:7.4 /bin/bash -c "echo 'php 7.4 build successfully'"
