@@ -1,0 +1,13 @@
+sudo: required
+
+language: php
+
+services:
+  - docker 
+
+after_success:
+  - docker --version
+  - docker build -t limonazzo/php:7.3 php7.3/
+  - docker run limonazzo/php:7.3 /bin/bash -c "echo 'php 7.3 build successfully'"
+  - docker build -t limonazzo/php:7.4 php7.4/
+  - docker run limonazzo/php:7.4 /bin/bash -c "echo 'php 7.4 build successfully'"
