@@ -1,5 +1,7 @@
 # Docker, docker-compose for Laravel development
 
+[![Build Status](https://travis-ci.org/limonazzo/docker-laravel.svg?branch=main)](https://travis-ci.org/limonazzo/docker-laravel)
+
 This repository provides you a development environment for Laravel; it requires Docker and Docker Compose installed in your system.
 This repository has a web server ( Apache on Debian ), database server (MySQL) , and PhpMyAdmin.
 
