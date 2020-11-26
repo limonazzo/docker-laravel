@@ -52,14 +52,6 @@ RUN docker-php-ext-install zip
 COPY dockerfiles/php.ini /usr/local/etc/php/
 COPY dockerfiles/default-ssl.conf /etc/apache2/sites-available
 COPY dockerfiles/000-default.conf /etc/apache2/sites-available
-COPY dockerfiles/xdebug.ini /tmp/xdebug.ini
-
-## Xdebug config
-## XDEBUG
-RUN pecl install xdebug
-ENV XDEBUGINI_PATH=/usr/local/etc/php/conf.d/xdebug.ini
-RUN echo "zend_extension="`find /usr/local/lib/php/extensions/ -iname 'xdebug.so'` > $XDEBUGINI_PATH
-RUN cat /tmp/xdebug.ini >> $XDEBUGINI_PATH
 
 ## Fake SSL
 RUN openssl req -x509 \
