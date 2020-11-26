@@ -6,6 +6,14 @@ jobs:
       script: 
       - docker build -t limonazzo/php:5.6 php5.6/
       - docker run limonazzo/php:5.6 /bin/bash -c "echo 'php 5.6 build successfully'"
+    - stage: php 7.1
+      script:
+      - docker build -t limonazzo/php:7.1 php7.1/
+      - docker run limonazzo/php:7.1 /bin/bash -c "echo 'php 7.1 build successfully'"
+    - stage: php 7.2
+      script:
+      - docker build -t limonazzo/php:7.2 php7.2/
+      - docker run limonazzo/php:7.2 /bin/bash -c "echo 'php 7.2 build successfully'"
     - stage: php 7.3
       script:
       - docker build -t limonazzo/php:7.3 php7.3/
