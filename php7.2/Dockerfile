@@ -78,6 +78,43 @@ RUN php composer-setup.php
 RUN rm composer-setup.php
 RUN mv composer.phar /usr/bin/composer
 
+# ##### FrontEndTools:
+
+# # Node 
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+RUN apt-get install -y nodejs
+RUN apt-get install gcc g++ make
+
+## YARN
+RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get install yarn
+
+# ## SASS
+RUN npm install -g sass
+
+# ## COMPASS
+RUN apt-get install -y ruby-full
+RUN gem update --system
+RUN gem install compass
+
+## GULP
+RUN npm install gulp-cli -g
+
+## GRUNT
+RUN npm install grunt-cli -g
+
+## webpack
+RUN npm install webpack -g
+
+## angular
+RUN npm install @angular/cli -g
+
+## brunch
+RUN npm install -g brunch
+
+## PArcel
+RUN npm install -g parcel-bundler 
 
 RUN chown -R www-data:www-data /var/www/
 
